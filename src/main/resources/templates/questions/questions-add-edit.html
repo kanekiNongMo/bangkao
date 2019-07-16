@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加试卷</title>
+    <header th:replace="header::html"></header>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>题目
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="questionInfo" th:value="${question.questionInfo}"
+                           name="questionInfo" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    选项A:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="aOption" th:value="${question.optionA}"
+                           name="optionA" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    选项B:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="bOption" th:value="${question.optionB}"
+                           name="optionB" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    选项C:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="cOption" th:value="${question.optionC}"
+                           name="optionC" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    选项D:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="dOption" th:value="${question.optionD}"
+                           name="optionD" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    答案:
+                </label>
+                <div class="layui-input-inline">
+                    A<input type="checkbox" id="answerA" value="A"
+                            name="answer" class="layui-input">
+                    B<input type="checkbox" id="answerB" value="B"
+                            name="answer" class="layui-input"> <br>
+                    C<input type="checkbox" id="answerC" value="C"
+                            name="answer" class="layui-input">
+                    D<input type="checkbox" id="answerD" value="D"
+                            name="answer" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    填空题答案:
+                </label>
+                <div class="layui-input-inline">
+
+                    <textarea id="tktda" th:value="${question.answer}"
+                              name="answer" required="" lay-verify="required"
+                              autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>答案说明:
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="explain" th:value="${question.answerExplain}"
+                           name="answerExplain" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red"></span>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>题目类型：
+                </label>
+                <div class="layui-input-inline">
+                    <select name="type" lay-filter="type" required="required">
+                        <option selected="selected" value=""></option>
+                        <option value="1">判断题</option>
+                        <option value="2">单选题</option>
+                        <option value="3">多选题</option>
+                        <option value="4">填空题</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>考卷类型：
+                </label>
+                <div class="layui-input-inline">
+                    <select name="majorType" lay-filter="type" required="required">
+                        <option selected="selected" value=""></option>
+                        <option  th:selected="${question.majorType} == 1" value="1">JAVA</option>
+                        <option  th:selected="${question.majorType} == 2" value="2">测试</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                </label>
+                <button class="layui-btn" lay-filter="save" lay-submit="save">
+                    增加
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    layui.use(['form', 'layer', 'laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({});
+
+        //监听提交
+        form.on('submit(save)', function (data) {
+            var isUpdate = false;
+            if (data.field.paperNo && data.field.paperNo.length > 0) {
+                isUpdate = true;
+            }
+            $.ajax({
+                url: isUpdate ? "/questions/edit" : "/questions/adds",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                success: function (result) {
+                    if (result.code === 500) {
+                        layer.msg(result.msg);
+                    } else {
+                        layer.alert("添加成功", {icon: 6}, function () {
+                            layer.close();
+                            xadmin.father_reload();
+                        });
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
